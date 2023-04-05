@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         // A function on this Character Controller that takes in a vector3 and set it in motion
-        controller.Move(move * speed * Time.deltaTime); // Time.deltaTime makes it framerate independent
+        controller.Move(move * speed * Time.deltaTime * 1.5f); // Time.deltaTime makes it framerate independent
 
         // This checks if the player is grounded and if the space bar is pressed
         if(Input.GetButtonDown("Jump") && isGrounded) 

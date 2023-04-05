@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Doors
+  - ObjectInteraction
+  - RealApple
+  - FakeApple
+  - Door1
+  - KeyPad
+  - Door2
+  - Notes
+  - NOOPEN
   layers:
   - Default
   - TransparentFX
@@ -12,8 +21,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - ObjectInteractive
+  - Current Object
   - 
   - 
   - 
