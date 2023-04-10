@@ -17,6 +17,9 @@ public class KeyPad : MonoBehaviour
     DoorInteraction door;
     public bool activate = false;
     public GameObject Trigger;
+    PlayerDetection PD;
+    public AudioSource src;
+    public AudioClip buttons;
 
     int count = 0;
     private void Start()
@@ -24,6 +27,7 @@ public class KeyPad : MonoBehaviour
         activate = false;
         KeyPadHierarchy.SetActive(false);
         door = GameObject.FindGameObjectWithTag("Door2").GetComponent<DoorInteraction>();
+        PD = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerDetection>();
     }
 
     private void Update()
@@ -38,6 +42,7 @@ public class KeyPad : MonoBehaviour
         
         if(Trigger.activeInHierarchy && activate == true)
         {
+            PD.DisplayMessageOff();
             crosshairHierarchy.SetActive(false);
             KeyPadHierarchy.SetActive(true);
             player.GetComponent<CharacterController>().enabled = false;
@@ -51,6 +56,8 @@ public class KeyPad : MonoBehaviour
     {
         if (textOB.text != "Wrong")
         {
+            src.clip = buttons;
+            src.Play();
             textOB.text += number.ToString();
         }
     }
@@ -60,6 +67,8 @@ public class KeyPad : MonoBehaviour
         if (textOB.text == answer)
         {
             textOB.text = "Right";
+            src.clip = buttons;
+            src.Play();
         }
         else
         {

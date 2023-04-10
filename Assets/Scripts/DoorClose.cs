@@ -9,6 +9,9 @@ public class DoorClose : MonoBehaviour
     [SerializeField]
     private Tags tagCheck;
 
+    public AudioSource src;
+    public AudioClip dst;
+
     public GameObject Door;
     DoorInteraction interaction;
     private void Start()
@@ -23,6 +26,8 @@ public class DoorClose : MonoBehaviour
             if (Tags.All.Contains(tagCheck))
             {
                 interaction = Door.GetComponent<DoorInteraction>();
+                src.clip = dst;
+                src.Play();
                 interaction.inReach = true;
                 count = 1;
             }

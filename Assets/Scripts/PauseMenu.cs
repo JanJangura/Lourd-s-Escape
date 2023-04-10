@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject CrossHair;
+    public GameObject canvas;
+    public GameObject PressE;
 
     public static bool isPaused; // False by default and static bool is a global variable 
 
@@ -38,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         CrossHair.SetActive(false);
+        PressE.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
