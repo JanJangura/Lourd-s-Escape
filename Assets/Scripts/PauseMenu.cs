@@ -24,13 +24,11 @@ public class PauseMenu : MonoBehaviour
             if (isPaused)
             {
                 Cursor.lockState = CursorLockMode.Locked;
-                CrossHair.SetActive(true);
                 ResumeGame();
             }
             else
             {
                 Cursor.lockState = CursorLockMode.Confined;
-                CrossHair.SetActive(false);
                 PauseGame();
             }
         }
@@ -39,13 +37,17 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
+        CrossHair.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void ResumeGame()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(false);
+        CrossHair.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
     }
@@ -64,7 +66,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("GamePlay");
+        SceneManager.LoadScene("GameScene");
         isPaused = false;
     }
 }

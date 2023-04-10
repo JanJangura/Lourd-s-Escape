@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -14,29 +15,35 @@ public class KeyPad : MonoBehaviour
     public GameObject KeyPadHierarchy;
     public GameObject crosshairHierarchy;
     DoorInteraction door;
+    public bool activate = false;
+    public GameObject Trigger;
 
     int count = 0;
     private void Start()
     {
+        activate = false;
         KeyPadHierarchy.SetActive(false);
         door = GameObject.FindGameObjectWithTag("Door2").GetComponent<DoorInteraction>();
     }
 
     private void Update()
     {
-        if (textOB.text == "Right")
-        {
-            Exit();
+        if (textOB.text == "Right" && count < 1)
+        {           
+            door.inReach = true;
+            count = 1;
             logic();
+            Exit();
         }
-
-        if (KeyPadHierarchy.activeInHierarchy)
+        
+        if(Trigger.activeInHierarchy && activate == true)
         {
             crosshairHierarchy.SetActive(false);
+            KeyPadHierarchy.SetActive(true);
             player.GetComponent<CharacterController>().enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            Camera.GetComponent<MouseLook>().enabled = false;           
+            Camera.GetComponent<MouseLook>().enabled = false;
         }
     }
 
@@ -57,8 +64,7 @@ public class KeyPad : MonoBehaviour
         else
         {
             textOB.text = "Wrong";
-            StartCoroutine(SecondCounter());
-            Clear();
+            StartCoroutine(SecondCounter());           
         }
     }
     public void Clear()
@@ -71,6 +77,7 @@ public class KeyPad : MonoBehaviour
     private IEnumerator SecondCounter()
     {
         yield return new WaitForSeconds(1);
+        Clear();
     }
 
     public void logic()
@@ -80,11 +87,9 @@ public class KeyPad : MonoBehaviour
 
     public void Exit()
     {
-        if (textOB.text == "Right" && count == 0)
-        {
-            door.inReach = true;
-            count = 1;
-        }        
+        activate = false;
+        Trigger.SetActive(false);
+        Clear();
         KeyPadHierarchy.SetActive(false);
         player.GetComponent<CharacterController>().enabled = true;
         Cursor.visible = false;

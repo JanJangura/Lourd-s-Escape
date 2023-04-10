@@ -6,14 +6,17 @@ public class ObjectInteractions : MonoBehaviour
 {
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;
+    private string objectName;
 
     private void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
+        objectName = this.gameObject.tag;
     }
 
     public void Grab(Transform objGrabPointTransformer)
     {
+        this.gameObject.tag = "DefaultApple";
         this.objectGrabPointTransform = objGrabPointTransformer;    // This is also called in an update function from the other script so this is also updating every frame
         objectRigidbody.useGravity = false;
         this.gameObject.layer = 8;
@@ -21,6 +24,7 @@ public class ObjectInteractions : MonoBehaviour
 
     public void Drop()
     {
+        this.gameObject.tag = objectName;
         this.objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
         this.gameObject.layer = 7;

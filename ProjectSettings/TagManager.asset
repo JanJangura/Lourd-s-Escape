@@ -13,6 +13,7 @@ TagManager:
   - Door2
   - Notes
   - NOOPEN
+  - DefaultApple
   layers:
   - Default
   - TransparentFX
