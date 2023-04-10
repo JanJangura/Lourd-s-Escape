@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerDetection : MonoBehaviour
