@@ -2531,7 +2531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagCheck: {fileID: 11400000, guid: 47ee431d378097c4093dd6505532b71b, type: 2}
-  src: {fileID: 0}
+  src: {fileID: 1365337170}
   dst: {fileID: 8300000, guid: f295e670c75d238409b4a5f70e336b87, type: 3}
   Door: {fileID: 939496192}
 --- !u!1 &664264455 stripped
