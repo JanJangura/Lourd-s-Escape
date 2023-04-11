@@ -2533,7 +2533,7 @@ MonoBehaviour:
   tagCheck: {fileID: 11400000, guid: 47ee431d378097c4093dd6505532b71b, type: 2}
   src: {fileID: 0}
   dst: {fileID: 8300000, guid: f295e670c75d238409b4a5f70e336b87, type: 3}
-  Door: {fileID: 939496192}
+  Door: {fileID: 1365337167}
 --- !u!1 &664264455 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1862469274680642617, guid: ace9fce60bfc11b42913a7d1a0b0fa27, type: 3}
@@ -4405,11 +4405,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &939496192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5188473038389785875, guid: de99959cdd5c96e45a8677e177f29df9, type: 3}
-  m_PrefabInstance: {fileID: 45907607}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &939901170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7997607172724137139, guid: 0bf220d24d4d67540a878a26139c1022, type: 3}
