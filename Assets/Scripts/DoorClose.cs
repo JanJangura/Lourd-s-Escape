@@ -1,35 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+//using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DoorClose : MonoBehaviour
 {
-    private int count = 0;
-    [SerializeField]
-    private Tags tagCheck;
+    //[SerializeField]
+    //private Tags tagCheck;
 
     public AudioSource src;
     public AudioClip dst;
 
     public GameObject Door;
-    DoorInteraction interaction;
+    public DoorInteraction interaction;
+
+    bool doOnce;
     private void Start()
     {
-        count = 0;
+        doOnce = false;
+        interaction = Door.GetComponent<DoorInteraction>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (count == 0 && other.TryGetComponent<TagsScript>(out var Tags))
+        if (other.tag == "Player")
         {
-            if (Tags.All.Contains(tagCheck))
+            if (interaction && !doOnce)
             {
-                interaction = Door.GetComponent<DoorInteraction>();
                 src.clip = dst;
                 src.Play();
-                interaction.inReach = true;
-                count = 1;
+                interaction.OpenDoor();
+                doOnce = true;
             }
         }
     }

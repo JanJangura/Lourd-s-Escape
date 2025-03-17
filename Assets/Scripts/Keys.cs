@@ -27,7 +27,7 @@ public class Keys : MonoBehaviour
         }
         if(OPENDOOR == true && !key.activeInHierarchy)
         {
-            DI.inReach = true;
+            DI.OpenDoor();
         }
     }
 }

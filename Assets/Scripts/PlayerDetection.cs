@@ -25,7 +25,7 @@ public class PlayerDetection : MonoBehaviour
 
     private ObjectInteractions objectInteractions;
     private DoorInteraction doorInteraction;
-    private KeyPad keyPad;
+    private KeyPadObject keyPad;
     private ReadNotes readNotes;
     private LightSwitch LS;
     private Keys keys;
@@ -100,6 +100,10 @@ public class PlayerDetection : MonoBehaviour
                         KeyObject(hitInfo);
                     }
                     break;
+
+                case "":
+                    DisplayMessageOff();
+                    break;
                 default:
                     DisplayMessageOff();
                     break;
@@ -135,7 +139,7 @@ private void GrabbableObject(RaycastHit hitInfo)
         {
             // Debug.Log("cows");          
             DisplayMessageOff();
-            doorInteraction.inReach = true;
+            doorInteraction.OpenDoor();
         }
     }
 
@@ -144,9 +148,10 @@ private void GrabbableObject(RaycastHit hitInfo)
         if (hitInfo.transform.TryGetComponent(out keyPad))
         {
             DisplayMessageOff();
-            crosshairHierarchy.SetActive(false);
-            keyPad.activate = true;
-            Trigger.SetActive(true);
+            if (!keyPad.keyPadUnlocked)
+            {
+                keyPad.ActivateKeyPad();
+            }
         }
     }
 

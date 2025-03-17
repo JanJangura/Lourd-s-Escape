@@ -14,19 +14,23 @@ public class KeyPad : MonoBehaviour
     public GameObject player;
     public GameObject KeyPadHierarchy;
     public GameObject crosshairHierarchy;
-    DoorInteraction door;
     public bool activate = false;
     public GameObject Trigger;
     PlayerDetection PD;
     public AudioSource src;
     public AudioClip buttons;
+    public GameObject doorObject;
+    DoorInteraction door;
+    public GameObject KPObject;
+    KeyPadObject KPScript;
 
     int count = 0;
     private void Start()
     {
         activate = false;
         KeyPadHierarchy.SetActive(false);
-        door = GameObject.FindGameObjectWithTag("Door2").GetComponent<DoorInteraction>();
+        KPScript = KPObject.GetComponent<KeyPadObject>();
+        door = doorObject.GetComponent<DoorInteraction>();
         PD = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerDetection>();
     }
 
@@ -34,13 +38,17 @@ public class KeyPad : MonoBehaviour
     {
         if (textOB.text == "Right" && count < 1)
         {           
-            door.inReach = true;
-            count = 1;
-            logic();
-            Exit();
+            if (door)
+            {
+                door.OpenDoor();
+                count = 1;
+                logic();
+                if (KPScript) KPScript.keyPadUnlocked = true;
+                Exit();
+            }        
         }
-        
-        if(Trigger.activeInHierarchy && activate == true)
+
+        if(Trigger.activeInHierarchy && activate)
         {
             PD.DisplayMessageOff();
             crosshairHierarchy.SetActive(false);
@@ -50,6 +58,12 @@ public class KeyPad : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Camera.GetComponent<MouseLook>().enabled = false;
         }
+    }
+
+    public void KeyPadInteraction()
+    {
+        Trigger.SetActive(true);
+        activate = true;
     }
 
     public void Number(int number)
@@ -95,7 +109,7 @@ public class KeyPad : MonoBehaviour
     }
 
     public void Exit()
-    {
+    {       
         activate = false;
         Trigger.SetActive(false);
         Clear();
@@ -105,5 +119,7 @@ public class KeyPad : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Camera.GetComponent<MouseLook>().enabled = true;
         crosshairHierarchy.SetActive(true);
+        Debug.Log("EXIT IS CALLED");
+        Debug.Log(this);
     }
 }

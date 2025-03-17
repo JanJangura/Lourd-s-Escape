@@ -7,6 +7,8 @@ public class ObjectInteractions : MonoBehaviour
     private Rigidbody objectRigidbody;
     private Transform objectGrabPointTransform;
     private string objectName;
+    public bool isDropped = false;
+    public bool isCounted = false;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class ObjectInteractions : MonoBehaviour
         this.objectGrabPointTransform = objGrabPointTransformer;    // This is also called in an update function from the other script so this is also updating every frame
         objectRigidbody.useGravity = false;
         this.gameObject.layer = 8;
+        isDropped = false;
     }
 
     public void Drop()
@@ -28,6 +31,7 @@ public class ObjectInteractions : MonoBehaviour
         this.objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
         this.gameObject.layer = 7;
+        isDropped = true;
     }
 
     private void Update()

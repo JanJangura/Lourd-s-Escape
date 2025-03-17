@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (controller == null || !controller.enabled) return;
         // This is creating a sphere based on the ground check, then use the ground distance as the radius, and the layermask will be groundmask.
         // If it collides with anything that is in our groundMask, then isGrounded is equal to true
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
