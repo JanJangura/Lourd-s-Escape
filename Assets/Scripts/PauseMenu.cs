@@ -25,12 +25,10 @@ public class PauseMenu : MonoBehaviour
         {
             if (isPaused)
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                ResumeGame();
+                //ResumeGame();
             }
             else
             {
-                Cursor.lockState = CursorLockMode.Confined;
                 PauseGame();
             }
         }
@@ -38,6 +36,8 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         pauseMenu.SetActive(true);
         CrossHair.SetActive(false);
         PressE.SetActive(false);
@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(false);
         CrossHair.SetActive(true);
         Time.timeScale = 1f;

@@ -204,7 +204,7 @@ private void GrabbableObject(RaycastHit hitInfo)
         NoteHierarchy.SetActive(false);
         player.GetComponent<CharacterController>().enabled = true;
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
         Camera.GetComponent<MouseLook>().enabled = true;
         crosshairHierarchy.SetActive(true);
         readNotes.inReach = false;
